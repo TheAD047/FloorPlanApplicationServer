@@ -12,7 +12,7 @@ namespace FloorPlanApplication.Models
         public double Price { get; set; } = 0.01;
 
         [Required]
-        public string ClietnID { get; set; }
+        public string ClientID { get; set; }
 
         [Required]
         public int PlanID { get; set; }
@@ -20,7 +20,7 @@ namespace FloorPlanApplication.Models
         [Required]
         public int OrderID { get; set; }
 
-        [ForeignKey("ClietnID")]
+        [ForeignKey("ClientID")]
         public virtual User? Client { get; set; }
 
         [ForeignKey("OrderID")]

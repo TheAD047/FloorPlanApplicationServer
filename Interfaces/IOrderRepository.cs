@@ -1,5 +1,4 @@
 ﻿using FloorPlanApplication.Models;
-using FloorPlanApplication.OptionModels;
 
 namespace FloorPlanApplication.Interfaces
 {

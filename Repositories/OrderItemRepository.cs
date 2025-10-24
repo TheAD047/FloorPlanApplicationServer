@@ -29,7 +29,7 @@ namespace FloorPlanApplication.Repositories
         public async Task<IEnumerable<OrderItem>> GetItemsByClientID(string ClientID, int index, int number)
         {
             return await _context.OrderItems
-                            .Where(o => o.ClietnID.Equals(ClientID))
+                            .Where(o => o.ClientID.Equals(ClientID))
                             .Skip(index * number)
                             .Take(number)
                             .ToListAsync();
