@@ -29,6 +29,7 @@ namespace FloorPlanApplication.Repositories
         public async Task<Plan> GetPlanByID(int ID)
         {
             return await _context.Plans
+                            .Include(p => p.Photos)
                             .FirstOrDefaultAsync(p => p.ID == ID);
         }
 
@@ -79,7 +80,7 @@ namespace FloorPlanApplication.Repositories
         public bool Save()
         {
             var saved = _context.SaveChanges();
-            return saved > 1 ? true : false;
+            return saved > 0 ? true : false;
         }
 
         public bool UpdatePlan(Plan Plan)

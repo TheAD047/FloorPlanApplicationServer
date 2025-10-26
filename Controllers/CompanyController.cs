@@ -22,9 +22,6 @@ namespace FloorPlanApplication.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(int? index)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
             var list = await _companyRepository.GetCompanies(index ?? 0, 10);
 
             var Companies = list.Select(c => c.ToCompanyDTO());
@@ -41,12 +38,12 @@ namespace FloorPlanApplication.Controllers
 
             Company company = DTO.ToCompanyFromCreateDTO();
 
-            bool added = _companyRepository.AddCompany(company);
+            bool added =  _companyRepository.AddCompany(company);
 
             if (!added)
                 return BadRequest();
 
-            return CreatedAtAction(nameof(CompanyDetails), new { ID = company.ID }, company.ToCompanyDTO());
+            return CreatedAtAction(nameof(GetCompanyDetails), new { ID = company.ID }, company.ToCompanyDTO());
         }
 
         [HttpPut]
@@ -56,7 +53,7 @@ namespace FloorPlanApplication.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var Company = await _companyRepository.GetCompanyByID(ID);
+            Company Company = await _companyRepository.GetCompanyByID(ID);
 
             if (Company == null)
                 return NotFound();
@@ -82,26 +79,21 @@ namespace FloorPlanApplication.Controllers
             if (company == null)
                 return NotFound();
 
-            bool saved = _companyRepository.DeleteCompany(company);
+            bool deleted = _companyRepository.DeleteCompany(company);
 
-            if (!saved)
+            if (!deleted)
                 return BadRequest();
 
             return NoContent();
         }
 
         [HttpGet("{ID:int}")]
-        public async Task<IActionResult> CompanyDetails([FromRoute] int ID)
+        public async Task<IActionResult> GetCompanyDetails([FromRoute] int ID)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
             Company Company = await _companyRepository.GetCompanyByID(ID);
 
             if(Company == null)
-            {
                 return NotFound();
-            }
 
             return Ok(Company.ToCompanyDTO());
         }
