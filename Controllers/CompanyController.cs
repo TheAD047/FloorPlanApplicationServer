@@ -109,7 +109,7 @@ namespace FloorPlanApplication.Controllers
 
             var list = await _companyRepository.GetCompanyByName(name);
 
-            if(list.IsNullOrEmpty())
+            if(list.Count() == 0)
             {
                 return NotFound();
             }

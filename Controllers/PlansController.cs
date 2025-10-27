@@ -127,7 +127,7 @@ namespace FloorPlanApplication.Controllers
 
             var list = await _planRepository.GetPlansByNumberOfBedrooms(DTO.min, DTO.max, DTO.index ?? 0, 10);
 
-            if (list.IsNullOrEmpty())
+            if (list.Count() == 0)
                 return NotFound();
 
             var plasn = list.Select(p => p.ToPlanDTO());
@@ -144,7 +144,7 @@ namespace FloorPlanApplication.Controllers
 
             var list = await _planRepository.GetPlansByNumberOfBathrooms(DTO.min, DTO.max, DTO.index ?? 0, 10);
 
-            if (list.IsNullOrEmpty())
+            if (list.Count() == 0)
                 return NotFound();
 
             var plasn = list.Select(p => p.ToPlanDTO());
@@ -161,7 +161,7 @@ namespace FloorPlanApplication.Controllers
 
             var list = await _planRepository.GetPlansByPrice(DTO.min, DTO.max, DTO.index ?? 0, 10);
 
-            if (list.IsNullOrEmpty())
+            if (list.Count() == 0)
                 return NotFound();
 
             var plasn = list.Select(p => p.ToPlanDTO());
@@ -178,7 +178,7 @@ namespace FloorPlanApplication.Controllers
 
             var list = await _planRepository.GetPlansByPrice(DTO.min, DTO.max, DTO.index ?? 0, 10);
 
-            if (list.IsNullOrEmpty())
+            if (list.Count() == 0)
                 return NotFound();
 
             var plasn = list.Select(p => p.ToPlanDTO());

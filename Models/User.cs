@@ -17,10 +17,10 @@ namespace FloorPlanApplication.Models
         [AllowNull]
         public int ComopanyID { get; set; }
 
-        public UserRole UaerRole { get; set; } = UserRole.TENTATIVE;
+        public UserRole UserRole { get; set; } = UserRole.TENTATIVE;
 
         [AllowNull]
-        public int EmployeeID { get; set; }
+        public int EmployeeNumber { get; set; }
 
         public bool IsActive { get; set; } = true;
 

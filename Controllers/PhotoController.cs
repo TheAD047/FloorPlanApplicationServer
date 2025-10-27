@@ -137,7 +137,7 @@ namespace FloorPlanApplication.Controllers
 
             var list = await _photoRepository.GetPhotosForPlan(ID);
 
-            if (list.IsNullOrEmpty())
+            if (list.Count() == 0)
                 return Ok("No Photos for this plan");
 
             var Photos = list.Select(p => p.ToPhotoDTO());
