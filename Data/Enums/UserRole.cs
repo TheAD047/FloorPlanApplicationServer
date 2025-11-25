@@ -2,7 +2,6 @@
 {
     public enum UserRole
     {
-        ADMIN,
         MANAGER,
         EMPLOYEE,
         CLIENT_REGULAR,
@@ -10,6 +9,7 @@
         COMPANY_REPRESENTATIVE_REGULAR,
         COMPANY_REPRESENTATIVE_ADMIN,
         TENTATIVE,
-        BANNED
+        BANNED,
+        ADMIN = 5797
     }
 }
