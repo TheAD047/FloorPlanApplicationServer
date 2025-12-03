@@ -4,6 +4,7 @@ using FloorPlanApplication.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FloorPlanApplication.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251202223609_update4")]
+    partial class update4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,7 +125,7 @@ namespace FloorPlanApplication.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("OrderID")
+                    b.Property<int>("OrderID")
                         .HasColumnType("int");
 
                     b.Property<int>("PlanID")
@@ -570,7 +573,9 @@ namespace FloorPlanApplication.Migrations
 
                     b.HasOne("FloorPlanApplication.Models.Order", "Order")
                         .WithMany("Items")
-                        .HasForeignKey("OrderID");
+                        .HasForeignKey("OrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Client");
 

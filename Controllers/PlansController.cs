@@ -3,7 +3,6 @@ using FloorPlanApplication.Interfaces;
 using FloorPlanApplication.Mappers;
 using FloorPlanApplication.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 
 namespace FloorPlanApplication.Controllers
 {

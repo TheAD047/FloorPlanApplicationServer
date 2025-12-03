@@ -5,7 +5,5 @@
         public string ClientID { get; set; }
 
         public int PlanID { get; set; }
-
-        public int OrderID { get; set; }
     }
 }

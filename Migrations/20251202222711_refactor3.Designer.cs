@@ -4,6 +4,7 @@ using FloorPlanApplication.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FloorPlanApplication.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251202222711_refactor3")]
+    partial class refactor3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,7 +125,7 @@ namespace FloorPlanApplication.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("OrderID")
+                    b.Property<int>("OrderID")
                         .HasColumnType("int");
 
                     b.Property<int>("PlanID")
@@ -203,39 +206,6 @@ namespace FloorPlanApplication.Migrations
                     b.ToTable("Plans");
                 });
 
-            modelBuilder.Entity("FloorPlanApplication.Models.PromoCode", b =>
-                {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double?>("Amount")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAtDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ExpiryDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsExpires")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsLocedToAdmin")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("Percent")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("PromoCodes");
-                });
-
             modelBuilder.Entity("FloorPlanApplication.Models.Service", b =>
                 {
                     b.Property<int>("ID")
@@ -257,6 +227,7 @@ namespace FloorPlanApplication.Migrations
                         .HasColumnType("nvarchar(4000)");
 
                     b.Property<string>("EmployeeID")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsActive")
@@ -570,7 +541,9 @@ namespace FloorPlanApplication.Migrations
 
                     b.HasOne("FloorPlanApplication.Models.Order", "Order")
                         .WithMany("Items")
-                        .HasForeignKey("OrderID");
+                        .HasForeignKey("OrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Client");
 
@@ -604,7 +577,8 @@ namespace FloorPlanApplication.Migrations
                     b.HasOne("FloorPlanApplication.Models.User", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeID")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.Navigation("Client");
 

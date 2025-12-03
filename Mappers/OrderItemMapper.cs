@@ -10,7 +10,6 @@ namespace FloorPlanApplication.Mappers
             return new OrderItemDTO
             {
                 Price = item.Price,
-                ClientID = item.ClientID,
                 PlanID = item.PlanID,
                 OrderID = item.OrderID
             };
@@ -22,7 +21,6 @@ namespace FloorPlanApplication.Mappers
             { 
                 ClientID = DTO.ClientID,
                 PlanID = DTO.PlanID,
-                OrderID = DTO.OrderID
             };
         }
     }

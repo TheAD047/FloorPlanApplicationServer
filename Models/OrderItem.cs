@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace FloorPlanApplication.Models
 {
@@ -17,8 +18,8 @@ namespace FloorPlanApplication.Models
         [Required]
         public int PlanID { get; set; }
 
-        [Required]
-        public int OrderID { get; set; }
+        [AllowNull]
+        public int? OrderID { get; set; }
 
         [ForeignKey("ClientID")]
         public virtual User? Client { get; set; }

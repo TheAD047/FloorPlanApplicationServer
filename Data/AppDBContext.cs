@@ -18,7 +18,8 @@ namespace FloorPlanApplication.Data
             builder.Entity<Service>()
                 .HasOne(s => s.Employee)
                 .WithMany()
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired(false);
 
             builder.Entity<Service>()
                 .HasOne(s => s.Client)
@@ -41,5 +42,6 @@ namespace FloorPlanApplication.Data
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<ServiceLog> ServicesLogs { get; set; }
+        public DbSet<PromoCode> PromoCodes { get; set; }
     }
 }
