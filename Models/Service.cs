@@ -17,13 +17,13 @@ namespace FloorPlanApplication.Models
         public string ClientID { get; set; }
 
         [AllowNull]
-        public int CompanyID { get; set; } 
+        public int? CompanyID { get; set; } 
 
         [AllowNull]
-        public string EmployeeID { get; set; } 
+        public string? EmployeeID { get; set; } 
 
         [AllowNull]
-        public string OtherServiceTypeName { get; set; } = string.Empty;
+        public string? OtherServiceTypeName { get; set; } = string.Empty;
 
         [Required]
         public DateTime ServiceRequestDate { get; set; } = DateTime.Now;
@@ -37,6 +37,9 @@ namespace FloorPlanApplication.Models
 
         [Required]
         public bool IsCompleted { get; set; } = false;
+
+        [Required]
+        public bool IsAccepted { get; set; } = false;
 
         [ForeignKey("ClientID")]
         public virtual User? Client { get; set; }

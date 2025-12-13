@@ -4,6 +4,7 @@ using FloorPlanApplication.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FloorPlanApplication.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251211230038_update6")]
+    partial class update6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,7 +62,7 @@ namespace FloorPlanApplication.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("CompanyID")
+                    b.Property<int>("CompanyID")
                         .HasColumnType("int");
 
                     b.Property<double>("Discount")
@@ -257,7 +260,7 @@ namespace FloorPlanApplication.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("CompanyID")
+                    b.Property<int>("CompanyID")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -268,9 +271,6 @@ namespace FloorPlanApplication.Migrations
                     b.Property<string>("EmployeeID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("IsAccepted")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -278,6 +278,7 @@ namespace FloorPlanApplication.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("OtherServiceTypeName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ServiceRequestDate")
@@ -337,7 +338,7 @@ namespace FloorPlanApplication.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ComopanyID")
+                    b.Property<int>("ComopanyID")
                         .HasColumnType("int");
 
                     b.Property<int?>("CompanyID")
@@ -562,7 +563,9 @@ namespace FloorPlanApplication.Migrations
 
                     b.HasOne("FloorPlanApplication.Models.Company", "Company")
                         .WithMany()
-                        .HasForeignKey("CompanyID");
+                        .HasForeignKey("CompanyID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Client");
 

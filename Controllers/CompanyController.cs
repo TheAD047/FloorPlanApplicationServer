@@ -38,7 +38,7 @@ namespace FloorPlanApplication.Controllers
 
             Company company = DTO.ToCompanyFromCreateDTO();
 
-            bool added =  _companyRepository.AddCompany(company);
+            bool added = _companyRepository.AddCompany(company);
 
             if (!added)
                 return BadRequest();

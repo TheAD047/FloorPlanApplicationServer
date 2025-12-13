@@ -4,6 +4,7 @@ namespace FloorPlanApplication.Interfaces
 {
     public interface IOrderRepository
     {
+        Task<IEnumerable<Order>> GetOrdersByClientID(string ClientID, int index, int number);
         Task<IEnumerable<Order>> GetFullfilledOrders(int index, int number);
         Task<IEnumerable<Order>> GetPendingOrders(int index, int number);
         Task<IEnumerable<Order>> GetCommercialOrders(int index, int number);

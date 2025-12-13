@@ -6,7 +6,7 @@ namespace FloorPlanApplication.Models
     public class ServiceLog
     {
         [Key]
-        public int ID { get; set; } = 0;
+        public int ID { get; set; }
 
         public int ServiceID { get; set; } = 0;
 

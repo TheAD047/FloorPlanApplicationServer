@@ -26,6 +26,16 @@ namespace FloorPlanApplication.Repositories
             return Save();
         }
 
+        public async Task<IEnumerable<Order>> GetOrdersByClientID(string ClientID, int index, int number)
+        {
+            return await _context.Orders
+                            .Where(o => o.ClientID == ClientID)
+                            .Skip(index *  number)
+                            .Take(number)
+                            .ToListAsync();
+        }
+
+
         public async Task<IEnumerable<Order>> GetCommercialOrders(int index, int number)
         {
             return await _context.Orders
@@ -143,7 +153,7 @@ namespace FloorPlanApplication.Repositories
         public bool Save()
         {
             var saved = _context.SaveChanges();
-            return saved > 1 ? true : false;
+            return saved >= 1 ? true : false;
         }
 
         public bool UpdateOrder(Order Order)

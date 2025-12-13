@@ -15,7 +15,7 @@ namespace FloorPlanApplication.Models
         public string LastName { get; set; }
 
         [AllowNull]
-        public int ComopanyID { get; set; }
+        public int? ComopanyID { get; set; }
 
         public UserRole UserRole { get; set; } = UserRole.TENTATIVE;
 

@@ -23,6 +23,9 @@ namespace FloorPlanApplication.Models
         [AllowNull]
         public DateTime OrderPaymentDate { get; set; }
 
+        [AllowNull]
+        public DateTime OrderCancellationDate { get; set; }
+
         public bool IsFulfilled { get; set; } = false;
 
         public bool IsPaid { get; set; } = false;
@@ -33,17 +36,21 @@ namespace FloorPlanApplication.Models
 
         public bool IsTaxExempted { get; set; } = false;
 
+        public bool IsCancelled { get; set; } = false;
+
         public bool IsCommercialOrder => !Client.ComopanyID.Equals(null);
 
         public double SubTotal { get; set; } = 0.01;
 
         public double Tax { get; set; } = 0.01;
 
+        public double Total { get; set; } = 0.01;
+
         [Required]
         public string ClientID { get; set; }
 
         [AllowNull]
-        public int CompanyID { get; set; }
+        public int? CompanyID { get; set; } = null;
 
         [AllowNull]
         public double Discount { get; set; }
