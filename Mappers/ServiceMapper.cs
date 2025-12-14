@@ -29,5 +29,32 @@ namespace FloorPlanApplication.Mappers
                 Description = DTO.Description,
             };
         }
+
+        public static Service ToServiceFromAdminEditDTO(this AdminEditServiceDTO DTO, Service service)
+        {
+            Service newService = new Service
+            {
+                ID = DTO.ServiceID,
+                EmployeeID = DTO.EmployeeUsername,
+                ServiceType = DTO.ServiceType ?? service.ServiceType,
+                CompanyID = DTO.CompanyID,
+                OtherServiceTypeName= DTO.OtherServiceTypeName,
+                Description = DTO.Description,
+            };
+
+            if(newService.IsAccepted && !service.IsAccepted)
+            {
+                newService.IsAccepted = true;
+                newService.ServiceAcceptanceDate = DateTime.Now;
+            }
+
+            if(newService.IsCompleted && !service.IsCompleted)
+            {
+                newService.IsCompleted = true;
+                newService.ServiceCompletionDate = DateTime.Now;
+            }
+
+            return newService;
+        }
     }
 }

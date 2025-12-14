@@ -27,6 +27,12 @@ namespace FloorPlanApplication.Models
 
         [Required]
         public DateTime ServiceRequestDate { get; set; } = DateTime.Now;
+        
+        [AllowNull]
+        public DateTime? ServiceAcceptanceDate { get; set; } 
+        
+        [AllowNull]
+        public DateTime? ServiceCompletionDate { get; set; } 
 
         [Required]
         [MaxLength(4000)]
